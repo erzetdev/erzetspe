@@ -49,7 +49,7 @@ class Admin extends CI_Controller
     public function data_siswa($id = '')
     {
         $data['title'] = 'Data Siswa'; //Judul Halaman
-        $data['kelas'] = $this->rapor->get_all_class();
+        $data['kelas'] = $this->rapor->get_all_class_in();
         $data['class'] = $this->rapor->get_class_id($id);
         $data['siswa'] = $this->rapor->get_all_student_by_class($id);
         $data['dataSiswa'] = $this->rapor->get_all_student_by_class($id);
@@ -63,14 +63,35 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer'); //Footer view
     }
 
-    public function naik_kelas($id = '')
+    public function naik_kelas()
     {
+        $id = $this->input->post('id_kelas');
+        $kelasTujuan = $this->input->post('kelas-tujuan');
+        $class = $this->rapor->get_class_id($kelasTujuan);
         $data = $this->rapor->get_all_student_by_class($id);
-        $kelas = $this->rapor->get_class_id($id);
-        if (isset($kelas)) {
-            if ($kelas['kelas']) {
+        // var_dump($data);
+        // die;
+        if (!empty($data)) {
+            foreach ($data as $d) {
+                $idSiswa = $d->id;
+                $kelas = ['kelas' => $kelasTujuan];
+                $this->rapor->update_student($kelas, $idSiswa);
             }
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sukses!</strong> Semua siswa sudah niak ke kelas ' . $class['kelas'] . '
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/data_siswa/' . $kelasTujuan);
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Peringatan!</strong> Siswa dikelas ini masih kosong.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('admin/data_siswa/' . $id);
         }
     }
 
@@ -450,7 +471,6 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data); //Sidebar view
         $this->load->view('templates/topbar', $data); //Topbar view
         $this->load->view('input_nilai', $data); //Nilai view
-        $this->load->view('templates/footer'); //Footer view
     }
     public function cetak_nilai($daftar_nilai = '', $idSiswa = '')
     {

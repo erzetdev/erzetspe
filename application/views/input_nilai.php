@@ -326,7 +326,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<td><?= $i; ?></td>
 												<td class="col-4"><?= $A['mapel']; ?></td>
 												<input type="hidden" value="<?= $A['id']; ?>" name="mapel<?= $A['id']; ?>">
-												<td class="col-1"><input type="number" value="<?= $A['nilai']; ?>" name="nilai<?= $A['id']; ?>" class="form-control no-border" placeholder="" required></td>
+												<td class="col-1"><input type="number" value="<?= $A['nilai']; ?>" name="nilai<?= $A['id']; ?>" class="form-control no-border ketrampilanA" placeholder="" required></td>
 												<td class="col-1"><select name="predikat<?= $A['id']; ?>" class="form-control no-border" required>
 														<option value="">...</option>
 														<option value="A" <?= set_select('predikat', 'A', (isset($A['predikat']) && $A['predikat'] == "A" ? TRUE : FALSE)); ?>>A</option>
@@ -373,7 +373,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<td><?= $i; ?></td>
 												<td class="col-4"><?= $B['mapel']; ?></td>
 												<input type="hidden" value="<?= $B['id']; ?>" name="mapel<?= $B['id']; ?>">
-												<td class="col-1"><input type="number" value="<?= $B['nilai']; ?>" name="nilai<?= $B['id']; ?>" class="form-control no-border" placeholder="" required></td>
+												<td class="col-1"><input type="number" value="<?= $B['nilai']; ?>" name="nilai<?= $B['id']; ?>" class="form-control no-border ketrampilanB" placeholder="" required></td>
 												<td class="col-1"><select name="predikat<?= $B['id']; ?>" class="form-control no-border" required>
 														<option value="">...</option>
 														<option value="A" <?= set_select('predikat', 'A', (isset($B['predikat']) && $B['predikat'] == "A" ? TRUE : FALSE)); ?>>A</option>
@@ -420,14 +420,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<td><?= $i; ?></td>
 												<td class="col-4"><?= $C['mapel']; ?></td>
 												<input type="hidden" value="<?= $C['id']; ?>" name="mapel<?= $C['id']; ?>">
-												<td class="col-1"><input type="number" value="<?= $C['nilai']; ?>" name="nilai<?= $C['id']; ?>" class="form-control no-border" placeholder="" required></td>
-												<td class="col-1"><select name="predikat<?= $C['id']; ?>" class="form-control no-border" required>
-														<option value="">...</option>
-														<option value="A" <?= set_select('predikat', 'A', (isset($C['predikat']) && $C['predikat'] == "A" ? TRUE : FALSE)); ?>>A</option>
-														<option value="B" <?= set_select('predikat', 'B', (isset($C['predikat']) && $C['predikat']  == "B" ? TRUE : FALSE)); ?>>B</option>
-														<option value="C" <?= set_select('predikat', 'C', (isset($C['predikat']) && $C['predikat']  == "C" ? TRUE : FALSE)); ?>>C</option>
-														<option value="D" <?= set_select('predikat', 'D', (isset($C['predikat']) && $C['predikat']  == "D" ? TRUE : FALSE)); ?>>D</option>
-														<option value="E" <?= set_select('predikat', 'E', (isset($C['predikat']) && $C['predikat']  == "E" ? TRUE : FALSE)); ?>>E</option>
+												<td class="col-1"><input type="number" id="input<?= $C['id']; ?>" data-id="<?= $C['id']; ?>" value="<?= $C['nilai']; ?>" name="nilai<?= $C['id']; ?>" class="form-control no-border ketrampilanC" placeholder="" required></td>
+												<td class="col-1"><select name="predikat<?= $C['id']; ?>" id="c<?= $C['id']; ?>" class="form-control no-border" required>
+														<option value="" id=" ketCopsi<?= $C['id']; ?>">...</option>
+														<option id="ketCopsiA<?= $C['id']; ?>" value="A" <?= set_select('predikat', 'A', (isset($C['predikat']) && $C['predikat'] == "A" ? TRUE : FALSE)); ?>>A</option>
+														<option id="ketCopsiB<?= $C['id']; ?>" value="B" <?= set_select('predikat', 'B', (isset($C['predikat']) && $C['predikat']  == "B" ? TRUE : FALSE)); ?>>B</option>
+														<option id="ketCopsiC<?= $C['id']; ?>" value="C" <?= set_select('predikat', 'C', (isset($C['predikat']) && $C['predikat']  == "C" ? TRUE : FALSE)); ?>>C</option>
+														<option id="ketCopsiD<?= $C['id']; ?>" value="D" <?= set_select('predikat', 'D', (isset($C['predikat']) && $C['predikat']  == "D" ? TRUE : FALSE)); ?>>D</option>
+														<option id="ketCopsiE<?= $C['id']; ?>" value="E" <?= set_select('predikat', 'E', (isset($C['predikat']) && $C['predikat']  == "E" ? TRUE : FALSE)); ?>>E</option>
 													</select></td>
 												<td class="col-6"><input type="text" value="<?= $C['deskripsi']; ?>" name="des<?= $C['id']; ?>" class="form-control no-border"></td>
 											</tr>
@@ -687,25 +687,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		</div>
 	</div>
-	<!-- Content Row -->
-	<!-- Content Row -->
-	<!-- <div class="row">
-		<div class="col-xl-12 col-lg-10">
-			<div class="card shadow mb-4">
-				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">H. Tanggapan Orang Tua / Wali</h6>
-				</div>
-				<div class="card-body">
-					<div class="mb-3">
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div> -->
-	<!-- Content Row -->
-
 
 </div>
 <!-- /.container-fluid -->
@@ -795,3 +776,98 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</div>
 </div>
+</div>
+<!-- End of Main Content -->
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+	<div class="container my-auto">
+		<div class="copyright text-center my-auto">
+			<span>Copyright &copy; Sistem Akademik Sekolah 2021</span>
+		</div>
+	</div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+	<i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Anda yakin akan keluar?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Pilih logout untuk keluar dari sesi.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+				<a class="btn btn-primary" href="<?= base_url('auth/logout') ?>">Logout</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="<?= base_url('vendor/sb-admin/') ?>vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url('vendor/sb-admin/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<?= base_url('vendor/sb-admin/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<?= base_url('vendor/sb-admin/') ?>js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="<?= base_url('vendor/sb-admin/') ?>vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="<?= base_url('vendor/sb-admin/') ?>js/demo/chart-area-demo.js"></script>
+<script src="<?= base_url('vendor/sb-admin/') ?>js/demo/chart-pie-demo.js"></script>
+
+<script src="<?= base_url('vendor/sb-admin/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('vendor/sb-admin/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="<?= base_url('vendor/sb-admin/') ?>js/demo/datatables-demo.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$(".ketrampilanA").keyup(function(e) {
+			console.log('a' + $(this).val());
+		});
+		$(".ketrampilanB").keyup(function(e) {
+			console.log('b' + $(this).val());
+		});
+		$(".ketrampilanC").keyup(function() {
+			var dataId = $(this).attr("data-id");
+			var idInput = 'nilai' + dataId;
+			var nilai = parseInt($('#input' + dataId).val());
+
+			if (nilai > 88) {
+				$("#ketCopsiA" + dataId).attr("selected", "selected");
+			} else if (nilai > 76) {
+				$("#ketCopsiB" + dataId).attr("selected", "selected");
+			} else if (nilai > 64) {
+				$("#ketCopsiC" + dataId).attr("selected", "selected");
+			} else if (nilai < 65) {
+				$("#ketCopsiD" + dataId).attr("selected", "selected");
+			} else {
+				$("#ketCopsi" + dataId).attr("selected", "selected");
+			}
+		});
+	});
+</script>
+
+</body>
+
+</html>

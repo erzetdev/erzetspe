@@ -73,7 +73,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-4">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+					<h6 class="m-0 font-weight-bold text-primary">NAIKAN KELAS INI</h6>
+				</div>
+				<!-- Card Body -->
+				<div class="card-body text-center">
+					<a class="btn btn-lg btn-success" href="#" data-toggle="modal" data-target="#naikTingkat">NAIKAN KELAS
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
+	<!-- Card Header - Dropdown -->
 	<!-- Content Row -->
 
 	<?php foreach ($dataSiswa as $siswa) : ?>
@@ -128,3 +141,41 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<?php endforeach ?>
 </div>
 <!-- /.container-fluid -->
+<!-- Logout Modal-->
+<div class="modal fade" id="naikTingkat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Anda yakin akan menaikan kelas?</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<form action="<?= base_url('admin/naik_kelas'); ?>" method="post">
+				<input type="hidden" value="<?= $class['id']; ?>" name="id_kelas">
+				<div class="modal-body">
+					<div class="alert alert-danger mb-3">
+						Semua siswa dikelas ini akan naik tingkat, pilih kelas tujuan dibawah ini.
+					</div>
+					<div class="mb-3">
+						<div class="form-group">
+							<div class="form-group">
+								<label for="kelas" class="form-label">Kelas</label>
+								<select class="form-control" name="kelas-tujuan" id="kelas" required>
+									<option value="">....</option>
+									<?php foreach ($kelas as $kls) : ?>
+										<option value="<?= $kls->id ?>"><?= $kls->kelas ?></option>
+									<?php endforeach ?>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
